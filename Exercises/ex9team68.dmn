@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_1yp0eb7" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.15.2" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
+  <decision id="Decision_1yuiu52" name="ΤΗΡΗΣΗ ΕΙΣΟΔΗΜΑΤΙΚΩΝ ΚΑΙ ΛΟΙΠΩΝ ΠΡΟΫΠΟΘΕΣΕΩΝ">
+    <informationRequirement id="InformationRequirement_0zx9pvt">
+      <requiredInput href="#InputData_0g1v5ic" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_150g4fb">
+      <requiredInput href="#InputData_0k7bqiu" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0yhx320">
+      <requiredInput href="#InputData_1x8h325" />
+    </informationRequirement>
+    <authorityRequirement id="AuthorityRequirement_1bccq4o">
+      <requiredAuthority href="#KnowledgeSource_1ca60ix" />
+    </authorityRequirement>
+    <decisionTable id="DecisionTable_1u9bs5v">
+      <input id="InputClause_12pgtig" label="ΙΣΟΔΥΝΑΜΟ ΟΙΚΟΓΕΝΕΙΑΚΟ ΕΙΣΟΔΗΜΑ">
+        <inputExpression id="LiteralExpression_1rjiib2" typeRef="integer">
+          <text>familyIncome</text>
+        </inputExpression>
+      </input>
+      <input id="Input_1" label="ΜΟΝΙΜΗ ΚΑΤΟΙΚΙΑ">
+        <inputExpression id="InputExpression_1" typeRef="boolean">
+          <text>permanentResidence</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0nhn1bb" label="ΥΠΗΚΟΟΤΗΤΑ">
+        <inputExpression id="LiteralExpression_0y97yfi" typeRef="boolean">
+          <text>nationality</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_1dp6ggu" label="ΟΡΘΟΤΗΤΑ ΕΙΣΟΔΗΜΑΤΙΚΩΝ ΚΑΙ ΛΟΙΠΩΝ ΠΡΟΫΠΟΘΕΣΕΩΝ" name="eligibility" typeRef="boolean" />
+      <output id="OutputClause_0lo6hdq" label="ΕΙΣΟΔΗΜΑΤΙΚΗ ΚΑΤΗΓΟΡΙΑ" name="incomeCategory" typeRef="string" />
+      <rule id="DecisionRule_1m35tt3">
+        <inputEntry id="UnaryTests_1es6mkh">
+          <text>&lt;= 6000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10s73jk">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pt1jj5">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_11gbate">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0jucs1v">
+          <text>Α</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0n5cm6p">
+        <inputEntry id="UnaryTests_1u8wotb">
+          <text>[6001..10000]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1spllpe">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08j4ckp">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1v9bco6">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0v6349l">
+          <text>Β</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1jrxakt">
+        <inputEntry id="UnaryTests_0iq7rj3">
+          <text>[10001..15000]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1f0psgs">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17ymjby">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1yi2bi1">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1h78wp5">
+          <text>Γ</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1dmayo5">
+        <description>Ο αιτών δεν ανήκει σε καμία από τις κατηγορίες λόγω υπέρβασης εισοδηματικού ορίου.</description>
+        <inputEntry id="UnaryTests_16mlgrv">
+          <text>&gt; 15000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1v5vfx6">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1u94pct">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ng6xje">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_19a5jxm">
+          <text>none</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0xrryj2">
+        <inputEntry id="UnaryTests_1sqduaa">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0oblbet">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1rbjsm8">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ud2rqm">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_10sqf62">
+          <text>none</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_18qrbie">
+        <inputEntry id="UnaryTests_1l1feu6">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1g7v94f">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_04r1c3p">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1bdzsbn">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1c0sm8t">
+          <text>none</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <knowledgeSource id="KnowledgeSource_1ca60ix" name="ΝΟΜΟΘΕΣΙΑ" />
+  <inputData id="InputData_0g1v5ic" name="ΙΣΟΔΥΝΑΜΟ ΟΙΚΟΓΕΝΕΙΑΚΟ ΕΙΣΟΔΗΜΑ" />
+  <inputData id="InputData_19cqmk9" name="ΕΞΑΡΤΩΜΕΝΑ ΤΕΚΝΑ" />
+  <inputData id="InputData_0k7bqiu" name="ΜΟΝΙΜΗ ΚΑΤΟΙΚΙΑ" />
+  <inputData id="InputData_1x8h325" name="ΥΠΗΚΟΟΤΗΤΑ" />
+  <decision id="Decision_0ac33b2" name="ΥΨΟΣ ΕΠΙΔΟΜΑΤΟΣ ΠΑΙΔΙΟΥ">
+    <informationRequirement id="InformationRequirement_0ij7wxk">
+      <requiredDecision href="#Decision_1yuiu52" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0fs3ey6">
+      <requiredInput href="#InputData_19cqmk9" />
+    </informationRequirement>
+    <authorityRequirement id="AuthorityRequirement_1j6wkih">
+      <requiredAuthority href="#KnowledgeSource_01rol4x" />
+    </authorityRequirement>
+    <decisionTable id="DecisionTable_1ejftl5">
+      <input id="InputClause_1tcjlmz" label="ΕΙΣΟΔΗΜΑΤΙΚΗ ΚΑΤΗΓΟΡΙΑ">
+        <inputExpression id="LiteralExpression_14ohiwb" typeRef="string">
+          <text>incomeCategory</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1ieqscu" label="ΕΞΑΡΤΩΜΕΝΑ ΤΕΚΝΑ">
+        <inputExpression id="LiteralExpression_01ruakv" typeRef="integer">
+          <text>children</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1reig9g" label="ΟΡΘΟΤΗΤΑ ΕΙΣΟΔΗΜΑΤΙΚΩΝ ΚΑΙ ΛΟΙΠΩΝ ΠΡΟΫΠΟΘΕΣΕΩΝ">
+        <inputExpression id="LiteralExpression_0xemgfr" typeRef="boolean">
+          <text>eligibility</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_11xuuqa" label="ΥΨΟΣ ΕΠΙΔΟΜΑΤΟΣ ΠΑΙΔΙΟΥ" name="incomeSupport" typeRef="integer" />
+      <rule id="DecisionRule_05t6rsw">
+        <description>Η μεταβλητή children εκφράζει τα ΕΞΑΡΤΩΜΕΝΑ ΤΕΚΝΑ </description>
+        <inputEntry id="UnaryTests_1cilmke">
+          <text>Α</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1uhd1t5">
+          <text>[1..2]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1wrv72m">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_04jw34e">
+          <text>70*children</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0nkv0n5">
+        <description>Η μεταβλητή children εκφράζει τα ΕΞΑΡΤΩΜΕΝΑ ΤΕΚΝΑ</description>
+        <inputEntry id="UnaryTests_08bsax2">
+          <text>Α</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_15ec32z">
+          <text>&gt;= 3</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0kvbrnu">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1kwqfwp">
+          <text>2*70 + 140*(children-2)</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_03s2n89">
+        <description>Η μεταβλητή children εκφράζει τα ΕΞΑΡΤΩΜΕΝΑ ΤΕΚΝΑ</description>
+        <inputEntry id="UnaryTests_0h1nxe7">
+          <text>Β</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0c55as9">
+          <text>[1..2]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1qevvxg">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_08kmyrl">
+          <text>42*children</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0fhqop2">
+        <description>Η μεταβλητή children εκφράζει τα ΕΞΑΡΤΩΜΕΝΑ ΤΕΚΝΑ</description>
+        <inputEntry id="UnaryTests_19c34pu">
+          <text>Β</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jnv0ri">
+          <text>&gt;= 3</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1yit6cl">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_04n7yzo">
+          <text>2*42 + 84*(children-2)</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_17d1ajb">
+        <description>Η μεταβλητή children εκφράζει τα ΕΞΑΡΤΩΜΕΝΑ ΤΕΚΝΑ</description>
+        <inputEntry id="UnaryTests_00cxnad">
+          <text>Γ</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0z7odvo">
+          <text>[1..2]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1s3p9oy">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_07kk1in">
+          <text>28*children</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0kubrd7">
+        <description>Η μεταβλητή children εκφράζει τα ΕΞΑΡΤΩΜΕΝΑ ΤΕΚΝΑ</description>
+        <inputEntry id="UnaryTests_1xghbdl">
+          <text>Γ</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17mcfd9">
+          <text>&gt;= 3</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1hdfpee">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1r6fj5l">
+          <text>2*28 + 56*(children-2)</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_05oz92k">
+        <inputEntry id="UnaryTests_1ueunx2">
+          <text>none</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_12uf17e">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0hmy4cq">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1kpt5i6">
+          <text>0</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_13x3174">
+        <inputEntry id="UnaryTests_0ddlpuw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1eialiw">
+          <text>0</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1x8iage">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1hv2kab">
+          <text>0</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1tg5e2a">
+        <inputEntry id="UnaryTests_1715yk5">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1uhqcp5">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0lzghnl">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0trqrui">
+          <text>0</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <knowledgeSource id="KnowledgeSource_01rol4x" name="ΝΟΜΟΘΕΣΙΑ" />
+  <textAnnotation id="TextAnnotation_03wfhti">
+    <text>Ως ισοδύναμο οικογενειακό εισόδημα ορίζεται το συνολικό, πραγματικό ή τεκμαρτό, εισόδημα από κάθε πηγή ημεδαπής και αλλοδαπής προέλευσης προ φόρων, μετά την αφαίρεση των εισφορών για κοινωνική ασφάλιση, εξαιρουμένων των επιδομάτων που δεν προσμετρώνται στο φορολογητέο εισόδημα, όλων των μελών της οικογένειας, διαιρούμενο με την λεγόμενη κλίμακα ισοδυναμίας.</text>
+  </textAnnotation>
+  <association id="Association_0l328pz">
+    <sourceRef href="#TextAnnotation_03wfhti" />
+    <targetRef href="#InputData_0g1v5ic" />
+  </association>
+  <textAnnotation id="TextAnnotation_001ep1s">
+    <text>-Κοινή Υπουργική Απόφαση Δ11/οικ. 72936/2021 (ΦΕΚ 4533/Β)                 -Κοινή Υπουργική Απόφαση Αριθμ. Γ.Π.οικ.Δ22/11/2705/58/2018 (ΦΕΚ 57/Β)  -Νόμος 4808/2021 (ΦΕΚ 101/Α) Άρθρα 136 παρ. 1</text>
+  </textAnnotation>
+  <association id="Association_07odeg2">
+    <sourceRef href="#TextAnnotation_001ep1s" />
+    <targetRef href="#KnowledgeSource_1ca60ix" />
+  </association>
+  <textAnnotation id="TextAnnotation_0nvicwb">
+    <text>Ο αιτών να διαμένει μόνιμα στη χώρα τα τελευταία πέντε (5) έτη, με την εξαίρεση την περίπτωση πολιτών άλλων κρατών, που πρέπει να διαμένουν νόμιμα και μόνιμα στη χώρα τα τελευταία 12 χρόνια. Το μόνιμο και νόμιμο της διαμονής στη χώρα των αιτούντων αποδεικνύεται από την υποβολή δήλωσης φορολογίας εισοδήματος. Τα εξαρτώμενα τέκνα πρέπει να βρίσκονται στην Ελλάδα, εκτός και εάν η απουσία οφείλεται σε λόγους σπουδών των τέκνων σε αναγνωρισμένες Ανώτερες ή Ανώτατες σχολές του Εξωτερικού.</text>
+  </textAnnotation>
+  <association id="Association_0v54ys1">
+    <sourceRef href="#TextAnnotation_0nvicwb" />
+    <targetRef href="#InputData_0k7bqiu" />
+  </association>
+  <textAnnotation id="TextAnnotation_0yrelsk">
+    <text>Δικαιούχοι του επιδόματος Παιδιού είναι:            α) Έλληνες πολίτες                                              β) ομογενείς αλλοδαποί οι οποίοι διαθέτουν δελτίο ομογενούς                                                 γ) πολίτες κρατών – μελών της ΕΕ                     δ) πολίτες των χωρών που ανήκουν στον Ευρωπαϊκό Οικονομικό Χώρο (Νορβηγία, Ισλανδία και Λιχτενστάιν) και Ελβετοί πολίτες      ε) Αναγνωρισμένοι πρόσφυγες που διαμένουν μόνιμα στην Ελλάδα, των οποίων το καθεστώς παραμονής διέπεται από τις διατάξεις της Σύμβασης του 1951 για το Καθεστώς Προσφύγων, όπως τροποποιήθηκε από το Πρωτόκολλο της Νέας Υόρκης το 1967 για το Καθεστώς Προσφύγων.                                     στ) ανιθαγενείς των οποίων το καθεστώς παραμονής στην Ελλάδα διέπεται από τις διατάξεις της Σύμβασης του 1954 για το Καθεστώς των Ανιθαγενών.                                 ζ) δικαιούχοι του ανθρωπιστικού καθεστώτος     η) πολίτες άλλων κρατών.</text>
+  </textAnnotation>
+  <association id="Association_1v4bd6p">
+    <sourceRef href="#TextAnnotation_0yrelsk" />
+    <targetRef href="#InputData_1x8h325" />
+  </association>
+  <textAnnotation id="TextAnnotation_0i9skc8">
+    <text>Εξαρτώμενα τέκνα θεωρούνται:  α) Τα άγαμα παιδιά που προέρχονται από γάμο, φυσικά, θετά ή αναγνωρισθέντα, που δεν υπερβαίνουν το 18ο έτος της ηλικίας τους ή το 19ο έτος, εφόσον φοιτούν στη Μέση Εκπαίδευση.                                 β) Σε περίπτωση εξαρτώμενου τέκνου, για το οποίο συντρέχουν οι προϋποθέσεις φοίτησής του στην υποχρεωτική εκπαίδευση, το επίδομα χορηγείται υπό την προϋπόθεση, αφενός της εγγραφής του σε σχολείο για το τρέχον σχολικό έτος, και αφετέρου της επαρκούς φοίτησής του για το αμέσως προηγούμενο σχολικό έτος.                                                     γ) Τα τέκνα που έχουν συμπληρώσει το 18ο έτος της ηλικίας τους, εφόσον φοιτούν σε ΑΕΙ ή TEI ή σε αναγνωρισμένα Κολέγια ή σε ΙΕΚ δημόσια ή ιδιωτικά ή στο Μεταλυκειακό Έτος – Τάξη Μαθητείας.                                                                   δ) Τα τέκνα με ποσοστό αναπηρίας 67% και άνω, μέχρι το τέλος του έτους που συμπληρώνουν το 24ο έτος της ηλικίας τους.</text>
+  </textAnnotation>
+  <association id="Association_12ok211">
+    <sourceRef href="#TextAnnotation_0i9skc8" />
+    <targetRef href="#InputData_19cqmk9" />
+  </association>
+  <textAnnotation id="TextAnnotation_0idq3hv">
+    <text>-Νόμος 4512/2018 (ΦΕΚ 5/Α) Άρθρα 214    -Νόμος 4659/2020 (ΦΕΚ 21/Α) Άρθρα 15-16</text>
+  </textAnnotation>
+  <association id="Association_1l7qtuf">
+    <sourceRef href="#TextAnnotation_0idq3hv" />
+    <targetRef href="#KnowledgeSource_01rol4x" />
+  </association>
+  <textAnnotation id="TextAnnotation_1cf7ut6">
+    <text>Απόφαση διαδικασίας "Επίδομα παιδιού"</text>
+  </textAnnotation>
+  <association id="Association_0nd0tal">
+    <sourceRef href="#TextAnnotation_1cf7ut6" />
+    <targetRef href="#Decision_0ac33b2" />
+  </association>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="Decision_1yuiu52">
+        <dc:Bounds height="80" width="180" x="840" y="450" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_06vubr6" dmnElementRef="KnowledgeSource_1ca60ix">
+        <dc:Bounds height="63" width="100" x="642" y="459" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1034s0f" dmnElementRef="AuthorityRequirement_1bccq4o">
+        <di:waypoint x="742" y="491" />
+        <di:waypoint x="840" y="490" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0qf70c1" dmnElementRef="InputData_0g1v5ic">
+        <dc:Bounds height="45" width="125" x="707" y="607" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0lsdfzt" dmnElementRef="InformationRequirement_0zx9pvt">
+        <di:waypoint x="770" y="607" />
+        <di:waypoint x="885" y="550" />
+        <di:waypoint x="885" y="530" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1g1rhas" dmnElementRef="TextAnnotation_03wfhti">
+        <dc:Bounds height="157" width="247" x="395" y="551" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1e8z120" dmnElementRef="Association_0l328pz">
+        <di:waypoint x="642" y="630" />
+        <di:waypoint x="707" y="630" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_04odljq" dmnElementRef="TextAnnotation_001ep1s">
+        <dc:Bounds height="48" width="425" x="160" y="462" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_06yxol0" dmnElementRef="Association_07odeg2">
+        <di:waypoint x="590" y="490" />
+        <di:waypoint x="642" y="489" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1tscplm" dmnElementRef="InputData_19cqmk9">
+        <dc:Bounds height="45" width="125" x="1027" y="317" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0cyo9ny" dmnElementRef="InformationRequirement_0fs3ey6">
+        <di:waypoint x="1090" y="317" />
+        <di:waypoint x="960" y="250" />
+        <di:waypoint x="960" y="230" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_0d7hwjm" dmnElementRef="InformationRequirement_0ij7wxk">
+        <di:waypoint x="930" y="450" />
+        <di:waypoint x="900" y="250" />
+        <di:waypoint x="900" y="230" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0jtdmuk" dmnElementRef="InputData_0k7bqiu">
+        <dc:Bounds height="45" width="125" x="867" y="607" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0llf565" dmnElementRef="InformationRequirement_150g4fb">
+        <di:waypoint x="930" y="607" />
+        <di:waypoint x="930" y="550" />
+        <di:waypoint x="930" y="530" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1cki83h" dmnElementRef="TextAnnotation_0nvicwb">
+        <dc:Bounds height="123" width="385" x="692" y="737" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0gfq6a3" dmnElementRef="Association_0v54ys1">
+        <di:waypoint x="882" y="737" />
+        <di:waypoint x="929" y="652" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1ovefai" dmnElementRef="InputData_1x8h325">
+        <dc:Bounds height="45" width="125" x="1027" y="607" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0xyo8qd" dmnElementRef="InformationRequirement_0yhx320">
+        <di:waypoint x="1090" y="607" />
+        <di:waypoint x="975" y="550" />
+        <di:waypoint x="975" y="530" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_08jsutc" dmnElementRef="TextAnnotation_0yrelsk">
+        <dc:Bounds height="315" width="279" x="1100" y="735" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1ahbigb" dmnElementRef="Association_1v4bd6p">
+        <di:waypoint x="1164" y="735" />
+        <di:waypoint x="1082" y="652" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_089srjh" dmnElementRef="TextAnnotation_0i9skc8">
+        <dc:Bounds height="272" width="345" x="1207" y="184" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_05o87or" dmnElementRef="Association_12ok211">
+        <di:waypoint x="1207" y="321" />
+        <di:waypoint x="1152" y="330" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_12wbosd" dmnElementRef="Decision_0ac33b2">
+        <dc:Bounds height="80" width="180" x="840" y="150" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_01615vj" dmnElementRef="KnowledgeSource_01rol4x">
+        <dc:Bounds height="63" width="100" x="642" y="158" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1613lag" dmnElementRef="AuthorityRequirement_1j6wkih">
+        <di:waypoint x="742" y="190" />
+        <di:waypoint x="840" y="190" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1xv7m6s" dmnElementRef="TextAnnotation_0idq3hv">
+        <dc:Bounds height="40" width="250" x="335" y="170" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1ek5mf2" dmnElementRef="Association_1l7qtuf">
+        <di:waypoint x="585" y="190" />
+        <di:waypoint x="642" y="190" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1bvvx6z" dmnElementRef="TextAnnotation_1cf7ut6">
+        <dc:Bounds height="30" width="240" x="830" y="85" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_02sntpy" dmnElementRef="Association_0nd0tal">
+        <di:waypoint x="948" y="115" />
+        <di:waypoint x="939" y="150" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_1yp0eb7" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.15.2" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
+  <decision id="Decision_1yuiu52" name="ΕΛΕΓΧΟΣ ΔΙΚΑΙΟΛΟΓΗΤΙΚΩΝ">
+    <informationRequirement id="InformationRequirement_0m7iosd">
+      <requiredInput href="#InputData_0ua18ih" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0zahvnj">
+      <requiredInput href="#InputData_15hqub0" />
+    </informationRequirement>
+    <knowledgeRequirement id="KnowledgeRequirement_18y034o">
+      <requiredKnowledge href="#BusinessKnowledgeModel_1obpxlk" />
+    </knowledgeRequirement>
+    <decisionTable id="DecisionTable_1u9bs5v">
+      <input id="Input_1">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" typeRef="string" />
+    </decisionTable>
+  </decision>
+  <knowledgeSource id="KnowledgeSource_1ca60ix" name="ΝΟΜΟΘΕΣΙΑ" />
+  <knowledgeSource id="KnowledgeSource_1nwtd7u" name="ΠΟΛΙΤΙΚΗ ΕΠΑΝΑΠΟΣΤΟΛΗΣ ΔΙΚΑΙΟΛΟΓΗΤΙΚΩΝ ΤΗΣ ΔΙΕΥΘΥΝΣΗΣ ΟΡΓΑΝΩΣΗΣ &#38; ΛΕΙΤΟΥΡΓΙΑΣ ΔΙΚΑΙΟΣΥΝΗΣ" />
+  <businessKnowledgeModel id="BusinessKnowledgeModel_1obpxlk" name="ΜΕΘΟΔΟΣ ΕΛΕΓΧΟΥ ΔΙΚΑΙΟΛΟΓΗΤΙΚΩΝ">
+    <authorityRequirement id="AuthorityRequirement_060vf3w">
+      <requiredAuthority href="#KnowledgeSource_1ca60ix" />
+    </authorityRequirement>
+  </businessKnowledgeModel>
+  <inputData id="InputData_0ua18ih" name="ΕΞΟΥΣΙΟΔΟΤΗΣΗ/ΠΛΗΡΕΞΟΥΣΙΟ" />
+  <inputData id="InputData_15hqub0" name="ΕΓΓΡΑΦΟ ΠΙΣΤΟΠΟΙΗΣΗΣ ΕΝΝΟΜΟΥ ΣΥΜΦΕΡΟΝΤΟΣ" />
+  <decision id="Decision_0eygi6u" name="ΕΠΑΝΑΠΟΣΤΟΛΗ ΔΙΚΑΙΟΛΟΓΗΤΙΚΩΝ">
+    <informationRequirement id="InformationRequirement_178tfdt">
+      <requiredDecision href="#Decision_1yuiu52" />
+    </informationRequirement>
+    <authorityRequirement id="AuthorityRequirement_0pc9unb">
+      <requiredAuthority href="#KnowledgeSource_1nwtd7u" />
+    </authorityRequirement>
+    <decisionTable id="DecisionTable_1iiyqh4">
+      <input id="InputClause_1dsey6f">
+        <inputExpression id="LiteralExpression_0c6aqa6" typeRef="string" />
+      </input>
+      <output id="OutputClause_1o66xfm" typeRef="string" />
+    </decisionTable>
+  </decision>
+  <textAnnotation id="TextAnnotation_1dpnm26">
+    <text>Διαδικασία έκδοσης πιστοποιητικού περί αναγγελίας κληρονομικού δικαιώματος. Το αρμόδιο τμήμα ελέγχει τα δικαιολογητικά που υποβλήθηκαν και σε περίπτωση μη πληρότητας τους ενημερώνει τον αιτούντα για επαναποστολή τους.</text>
+  </textAnnotation>
+  <association id="Association_1mzmp97">
+    <sourceRef href="#TextAnnotation_1dpnm26" />
+    <targetRef href="#Decision_1yuiu52" />
+  </association>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="Decision_1yuiu52">
+        <dc:Bounds height="80" width="180" x="540" y="240" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_06vubr6" dmnElementRef="KnowledgeSource_1ca60ix">
+        <dc:Bounds height="63" width="100" x="160" y="249" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1938oud" dmnElementRef="KnowledgeSource_1nwtd7u">
+        <dc:Bounds height="63" width="100" x="160" y="89" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0owljeh" dmnElementRef="BusinessKnowledgeModel_1obpxlk">
+        <dc:Bounds height="46" width="135" x="333" y="257" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_181n5nh" dmnElementRef="InputData_0ua18ih">
+        <dc:Bounds height="45" width="125" x="488" y="368" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0igxiwu" dmnElementRef="InputData_15hqub0">
+        <dc:Bounds height="45" width="125" x="648" y="369" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_001zq6d" dmnElementRef="InformationRequirement_0m7iosd">
+        <di:waypoint x="551" y="368" />
+        <di:waypoint x="600" y="320" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_107agdi" dmnElementRef="InformationRequirement_0zahvnj">
+        <di:waypoint x="711" y="369" />
+        <di:waypoint x="660" y="320" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_03wxpyu" dmnElementRef="AuthorityRequirement_060vf3w">
+        <di:waypoint x="260" y="281" />
+        <di:waypoint x="333" y="280" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_0ektz6c" dmnElementRef="KnowledgeRequirement_18y034o">
+        <di:waypoint x="468" y="280" />
+        <di:waypoint x="540" y="280" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_11u9ive" dmnElementRef="AuthorityRequirement_0pc9unb">
+        <di:waypoint x="260" y="121" />
+        <di:waypoint x="540" y="120" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_1fxhph6" dmnElementRef="InformationRequirement_178tfdt">
+        <di:waypoint x="630" y="240" />
+        <di:waypoint x="630" y="180" />
+        <di:waypoint x="630" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0jbz4wg" dmnElementRef="Decision_0eygi6u">
+        <dc:Bounds height="80" width="180" x="540" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_03yzvug" dmnElementRef="TextAnnotation_1dpnm26">
+        <dc:Bounds height="80" width="340" x="800" y="140" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0tlkk6x" dmnElementRef="Association_1mzmp97">
+        <di:waypoint x="800" y="203" />
+        <di:waypoint x="718" y="240" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
